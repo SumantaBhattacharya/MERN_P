@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LocalStorage Test</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        :root {
+            --bg-light: #fff;
+            --color-light: black;
+
+            --bg-dark: #333;
+            --color-dark: white;
+
+        }
+
+        body.light {
+            background-color: var(--bg-light);
+            color: var(--color-light);
+        }
+
+        body.dark {
+            background-color: var(--bg-dark);
+            color: var(--color-dark);
+        }
+
+        @font-face {
+            font-family: 'TypoRound';
+            src: url('./Typo_Round_Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Example usage */
+        body {
+            font-family: 'TypoRound', sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background-color: #999;
+            color: #fff;
+            font-family: 'TypoRound', sans-serif;
+
+        }
+    </style>
+</head>
+
+<body class="">
+    <div class="container">
+        <h1>Theme Preference</h1>
+        <button id="toggleTheme">
+            Toggle Theme
+        </button>
+    </div>
+    <script>
+        // the idea is if the user set the webpage to dark mode which was previously in light mode indefault to save the user preference in local storage
+
+        // this is for the system to detect if their website should open dark or light
+        function setDANDL() {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // document.querySelector("body").classList.add("dark")
+                document.body.classList.add("dark")
+                document.body.classList.remove("light")
+            } else {
+                document.body.classList.remove("dark");
+                document.body.classList.add("light");
+            }
+        }
+
+        setDANDL();
+
+        // if theme property already exists
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            document.body.classList.remove("dark", "light"); // remove any existing theme
+            document.body.classList.add(savedTheme);        // add the saved one
+        } else {
+            setDANDL();// saved the system set theme
+        }
+
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", function () {
+            if (!localStorage.getItem("theme")) {
+                setDANDL()
+            }
+        })
+
+        let btn = document.querySelector("#toggleTheme")
+
+        btn.addEventListener("click", function () {
+            if (document.body.classList.contains("dark")) {
+                document.body.classList.remove("dark")
+                document.body.classList.add("light")
+
+                localStorage.setItem("theme", "light")
+
+            } else {
+                document.body.classList.remove("light")
+                document.body.classList.add("dark")
+
+                localStorage.setItem("theme", "dark")
+
+            }
+        })
+
+        // document.body.classList.add(localStorage.getItem("theme"));
+
+    </script>
+</body>
+
+</html>
+
+<!-- 
+
+5. LocalStorage, SessionStorage, and Cookies
+
+localStorage API: setItem, getItem, removeItem, clear
+SessionStorage API
+Storing/retrieving strings vs JSON
+Basic cookie structure (manual key = value; path = /format)
+
+why only strings work in localStorage
+Cookies need manual encoding/expiration handling
+
+User LocalStorage for state, cookies for cross-tab auth 
+
+Local storage store the data in the browser 5mb's, Data persists even after closing the browser until manually cleared by the user
+Session storage store the data in the browser but temporarily around 5mb's
+Cookies can handle less data - 4kb, Can be set to expire at a specific time. Use case: Authentication tokens, tracking user sessions.
+
+
+localStorage i. to store data ii. to fetch data iii. to remove data iv. to update data
+
+-->
