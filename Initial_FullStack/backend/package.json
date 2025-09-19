@@ -1,0 +1,18 @@
+{
+  "name": "initial_start_of_fullstack",
+  "version": "1.0.0",
+  "description": "initial_start_of_fullstack",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon test.js",
+    "start": "node test.js"
+    
+  },
+  "author": "Sumanta Bhattacharya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
