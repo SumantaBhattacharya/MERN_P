@@ -60,9 +60,9 @@ google.com ---> [React] ---> [Node]    --->     [DB] short url - random id, long
 
 ```
 
-# ***Setting Up Project - NodeJS Blogging Application with MongoDB***
+# ***Uploading Files with NodeJS and Multer***
 
-[![Setting Up Project - NodeJS Blogging Application with MongoDB](https://img.youtube.com/vi/6z6CR29gtds/0.jpg)](https://youtu.be/6z6CR29gtds?si=YmYOreK_qkkRh7Ls)
+[![Uploading Files with NodeJS and Multer](https://img.youtube.com/vi/WqJ0P8JnftI/0.jpg)](https://youtu.be/WqJ0P8JnftI?si=yHyep0ipjR3M3xOH)
 
 ## ***Track of Visited links during this lecture***
 - [*multer*](https://www.npmjs.com/package/multer)
@@ -97,37 +97,4 @@ google.com ---> [React] ---> [Node]    --->     [DB] short url - random id, long
 *In React Query, the ***QueryClientProvider*** is a crucial component that provides a QueryClient instance to your React application. This QueryClient is responsible for managing all the data fetching, caching, and state management related to your queries.*
 
 </p>
-<!-- 
-In Redux, the state is immutable. which is why we need Dispatch Action, Reducer
 
-               
-                              Redux Toolkit
-                                   ┌─────────────────┐
-                                   │                 │
-                                   │  Initial State  │
-                                   │    habits: []   │
-                                   │                 │
-                                   └─────────────────┘
-                            👤                       ➹
-                          ┌─────────────────┐       ┌─────────────────┐   
-dispatch(addHabit({       │                 │       │                 │   {
-name: "Read Book",        │  User Interface │       │  Dispatch Action│     type: "addHabit"
-frequency: "Daily"        │                 │------>│                 │     payload: {name, frequency }
-}))                       │                 │       │                 │   }
-                          └─────────────────┘       └─────────────────┘   
-                                     ⇧                    ⇩
-                                  Re-render               ⇩
-                                     ⇧                    ⇩
-                        ┌-----------------------------------------------─┐
-                        |  🛢️                         ⚙️                 |
-                        | ┌─────────────────┐ Store ┌──────────────────┐ |
-                        | │                 │       │                  │ |   addHabits: (
-habits :[{              | │ Update State    │       │     Reducer      │ |     state,
-    name: "Read Book",  | │                 │ --->  │                  │ |     action) => {
-    frequency: "Daily"  | │                 │       │                  │ |     state.habits.push({
-    }],                 | └─────────────────┘       └──────────────────┘ |     name: action.payload,
-                        └------------------------------------------------┘     frequency: action.payload })} 
-
-Store is where the state lives  
-Reducer will create a copy of our current state, then it will overlap out previous state.
- -->
