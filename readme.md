@@ -60,13 +60,6 @@ google.com ---> [React] ---> [Node]    --->     [DB] short url - random id, long
 
 ```
 
-# ***Uploading Files with NodeJS and Multer***
-
-[![Uploading Files with NodeJS and Multer](https://img.youtube.com/vi/WqJ0P8JnftI/0.jpg)](https://youtu.be/WqJ0P8JnftI?si=yHyep0ipjR3M3xOH)
-
-## ***Track of Visited links during this lecture***
-- [*multer*](https://www.npmjs.com/package/multer)
-
 # T***anStack Query***
 *It’s a library that helps you manage the state of data you fetch from servers, like APIs, in your React applications.*
 *One of the most powerful tools for manager server-side state in React.*
@@ -98,3 +91,9 @@ google.com ---> [React] ---> [Node]    --->     [DB] short url - random id, long
 
 </p>
 
+# ***Uploading Files with NodeJS and Multer***
+
+[![Uploading Files with NodeJS and Multer](https://img.youtube.com/vi/WqJ0P8JnftI/0.jpg)](https://youtu.be/WqJ0P8JnftI?si=yHyep0ipjR3M3xOH)
+
+## ***Track of Visited links during this lecture***
+- [*multer*](https://www.npmjs.com/package/multer)
