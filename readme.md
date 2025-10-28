@@ -9,19 +9,19 @@ p{
 
 <p class="custom-font" >
 
-> ****Localhost*** is just a special IP address 127.0.0.1, which always points to your own computer.*
+> \***_Localhost_** is just a special IP address 127.0.0.1, which always points to your own computer.\*
 
-> *2. Using LAN (local network) i. If you want your phone, tablet, or another PC to access your React frontend or Node backend: i.i. You use your private IP on your LAN. Example: 192.168.1.10:3000 for React, 192.168.1.10:5000 for Node. i.ii. Your devices must be connected to the same Wi-Fi or wired LAN. i.iii. In this case, your private IP acts like your “address” inside your home network, so other devices can reach your server.*
+> _2. Using LAN (local network) i. If you want your phone, tablet, or another PC to access your React frontend or Node backend: i.i. You use your private IP on your LAN. Example: 192.168.1.10:3000 for React, 192.168.1.10:5000 for Node. i.ii. Your devices must be connected to the same Wi-Fi or wired LAN. i.iii. In this case, your private IP acts like your “address” inside your home network, so other devices can reach your server._
 
-# ***How to Connect Frontend and Backend in JavaScript | Fullstack Proxy and CORS***
+# **_How to Connect Frontend and Backend in JavaScript | Fullstack Proxy and CORS_**
 
 [![How to Connect Frontend and Backend in JavaScript | Fullstack Proxy and CORS](https://img.youtube.com/vi/fFHyqhmnVfs/0.jpg)](https://youtu.be/fFHyqhmnVfs?si=g6yS6sJ9oWmceCch)
 
-# ***Setting Up Project - NodeJS Blogging Application with MongoDB***
+# **_Setting Up Project - NodeJS Blogging Application with MongoDB_**
 
 [![Setting Up Project - NodeJS Blogging Application with MongoDB](https://img.youtube.com/vi/6z6CR29gtds/0.jpg)](https://youtu.be/6z6CR29gtds?si=YmYOreK_qkkRh7Ls)
 
-## ***5. LocalStorage, SessionStorage, and Cookies***
+## **_5. LocalStorage, SessionStorage, and Cookies_**
 
 localStorage API: setItem, getItem, removeItem, clear
 SessionStorage API
@@ -31,7 +31,7 @@ Basic cookie structure (manual key = value; path = /format)
 why only strings work in localStorage
 Cookies need manual encoding/expiration handling
 
-User LocalStorage for state, cookies for cross-tab auth 
+User LocalStorage for state, cookies for cross-tab auth
 
 Local storage store the data in the browser 5mb's, Data persists even after closing the browser until manually cleared by the user
 Session storage store the data in the browser but temporarily around 5mb's
@@ -44,13 +44,13 @@ cookies -> yeh bhi apka data store kerta hai and aapka data browser ke cookies n
 cookies mein jo bhi data store karoge wo data page reload par automatically server par jayega.
  -->
 
-# ***URL Shortner***
+# **_URL Shortner_**
 
-- *Url short* 
-- *Redirect*
-- *Custom URL*
-- *User signin/signup*
-- *Analysis*
+- _Url short_
+- _Redirect_
+- _Custom URL_
+- _User signin/signup_
+- _Analysis_
 
 ```
                   user
@@ -60,40 +60,274 @@ google.com ---> [React] ---> [Node]    --->     [DB] short url - random id, long
 
 ```
 
-# T***anStack Query***
-*It’s a library that helps you manage the state of data you fetch from servers, like APIs, in your React applications.*
-*One of the most powerful tools for manager server-side state in React.*
+# T**_anStack Query_**
 
-## ***Advantages***
-- ****Data Fetching Made Easy***: With a simple useQuery hook, fetching data becomes super easy.*
+_It’s a library that helps you manage the state of data you fetch from servers, like APIs, in your React applications._
+_One of the most powerful tools for manager server-side state in React._
 
-- ****Built-in Loading and Error States:*** No need to write custom code for handling loading, errors, or success states.*
+## **_Advantages_**
 
-- ****Automatic Caching***: React Query automatically caches your data.*
+- \***_Data Fetching Made Easy_**: With a simple useQuery hook, fetching data becomes super easy.\*
 
-- ****Background Refetching***: If your data gets stale or out of date, ***TanStack*** Query can refetch it in the background.*
+- \***_Built-in Loading and Error States:_** No need to write custom code for handling loading, errors, or success states.\*
 
-- ****Pagination and Infinite Scrolling***: Handling pagination or infinite scrolling? React Query has you covered with tools specifically designed for those complex use cases.*
+- \***_Automatic Caching_**: React Query automatically caches your data.\*
 
+- \***_Background Refetching_**: If your data gets stale or out of date, **_TanStack_** Query can refetch it in the background.\*
 
-# ***QueryClient***
+- \***_Pagination and Infinite Scrolling_**: Handling pagination or infinite scrolling? React Query has you covered with tools specifically designed for those complex use cases.\*
 
-- ***QueryClient***: *It is the core part of the react-query library. It manages the caching, background fetching, data synchronization, and other query-related logic. It provides a centralized store for managing and caching asynchronous data in your application.*
+# **_QueryClient_**
 
-* *new QueryClient(): This creates a new QueryClient instance with default settings. You can configure it with options if needed (e.g., setting cache time, stale time, etc.).*
+- **_QueryClient_**: _It is the core part of the react-query library. It manages the caching, background fetching, data synchronization, and other query-related logic. It provides a centralized store for managing and caching asynchronous data in your application._
 
-* ****QueryClientProvider***: This component is part of react-query and is used to provide the QueryClient instance to your entire React app (or a portion of it). This makes the qulient available via React's context API so that all the components in the tree can the useQuery, useklutation, and other hooks provided by react-query.*
+* _new QueryClient(): This creates a new QueryClient instance with default settings. You can configure it with options if needed (e.g., setting cache time, stale time, etc.)._
 
-# ***Verdict***
-****TanStack*** Query makes working with server-side data in React a breeze. It’s fast, efficient, and reduces the amount of boilerplate code you need to write. If you’re working on any app that relies on API data, this tool is an absolute game-changer.*
+* \***_QueryClientProvider_**: This component is part of react-query and is used to provide the QueryClient instance to your entire React app (or a portion of it). This makes the qulient available via React's context API so that all the components in the tree can the useQuery, useklutation, and other hooks provided by react-query.\*
 
-*In React Query, the ***QueryClientProvider*** is a crucial component that provides a QueryClient instance to your React application. This QueryClient is responsible for managing all the data fetching, caching, and state management related to your queries.*
+# **_Verdict_**
+
+\***_TanStack_** Query makes working with server-side data in React a breeze. It’s fast, efficient, and reduces the amount of boilerplate code you need to write. If you’re working on any app that relies on API data, this tool is an absolute game-changer.\*
+
+\*In React Query, the **_QueryClientProvider_** is a crucial component that provides a QueryClient instance to your React application. This QueryClient is responsible for managing all the data fetching, caching, and state management related to your queries.\*
 
 </p>
 
-# ***Uploading Files with NodeJS and Multer***
+# **_Uploading Files with NodeJS and Multer_**
 
 [![Uploading Files with NodeJS and Multer](https://img.youtube.com/vi/WqJ0P8JnftI/0.jpg)](https://youtu.be/WqJ0P8JnftI?si=yHyep0ipjR3M3xOH)
 
-## ***Track of Visited links during this lecture***
-- [*multer*](https://www.npmjs.com/package/multer)
+## **_Track of Visited links during this lecture_**
+
+- [_multer_](https://www.npmjs.com/package/multer)
+
+## **YAML - A complete course for developers**
+
+[![YAML - A complete course for developers](https://img.youtube.com/vi/NaoMEy_urlI/0.jpg)](https://youtu.be/NaoMEy_urlI?si=zoqkoiNJksy0H_3B)
+
+> YAML(Ain't Markup Language) - is a data serialisation format. e.g., XML(eXtensible Markup Language), JSON(JavaScript Object Notation). Extension starts ends with .yaml or .yml
+
+```yaml
+
+# chai_type: masala_chai
+temperature: hot # Inline comments
+servings: 2
+brewing_time: 5
+
+chai_recipe:
+  base: black_tea
+  milk: whole_milk
+
+chai_recipe_two:
+  base: green_tea
+  milk: almond_milk
+
+chai_name: Masala Chai
+description: "Chai with cardamom, cinnamon, ginger"
+tagline: 'The best chai in town!'
+
+brewing_instruction: | # multiline string
+  boil water
+  add tea leaves
+  add milk
+
+brewing_instruction: > # multiline string but this will be treated as a single line.
+  boil water
+  add tea leaves
+  add milk
+
+cups_per_day: 3
+cups_per_serving: 3+5e+2
+cups_per_week: 0xFF22FF
+
+is_hot: true
+add_sugar: yes
+add_salt: no # yaml automatically ditects of what type of datatype it is.
+instant: off # n, N, false, False, FALSE
+
+sweetner: null
+alternative_milk: ~ # null
+
+morning_brew: 2025-01-15
+local_time: 2025-01-15 08:30:01
+
+spice: #list
+  - ginger
+  - cloves
+  - cardamom
+
+# spices: [ginger, cloves, cardamom] # list - old format
+
+---
+
+steeping_times: [3, 2, 1]
+
+---
+
+{ingredients: "sugar", "tea_leaves", "cardamom"}
+
+---
+chai_categories:
+  - name: Traditional
+    varities:
+        - Masala Chai
+        - Ginger Chai
+        - Cardmon Chai
+  - name: Modern
+    varities:
+        - Vanilla Chai
+        - Mint Chai
+        - Chocolate Chai
+
+--- # Now, yaml(is a collection of 0 or more documents and gets seperated by "---") will know this is a different type of document
+
+masala_chai:
+  ingredients:
+    tea: black_tea
+    liquid: 
+      water: 200ml
+      milk: 100ml
+    spices:
+      ginger: 1_inch
+      cinnamon: 1_stick
+  preparation:
+   method: simmer
+   duration: 5_minutes
+  
+chai_menu: # list of dictionaries 
+  - name: Masala Chai
+    price: 3$
+    size: medium
+
+  - name: Vanilla Chai
+    price: 4$
+    size: regular
+
+# Reusing properties with anchors
+default_chai_base: &default_base
+  tea: black_tea
+  water: 200ml
+  brewing_time: 5
+
+morning_chai: # pointing the anchor
+  <<: *default_base
+  milk: 100ml
+
+evening_chai: 
+ <<: *default_base
+ brewing_time: 10 # overwrite
+ milk: 50ml
+
+zip_code: !!str 12345 # enforced string
+count: !!int "123" # force integer
+
+chai_ingredients: !!seq
+  - tea_leaves
+  - milk
+  - spices
+# some of the seq will be empty known as sparse seq
+  - 
+  - sugar
+---
+
+# nested sequence
+
+- 
+  - tea_leaves
+  - milk
+  - spices
+- 
+  - sugar
+  - water
+  - spices
+
+# key: value pairs are called maps
+!!map
+# nested mappings: map within an map
+chai: Black_tea
+preparation: {method: simmer, duration: 5_minutes} # another way of writting it
+
+# one key to have multiple/duplicates values - pairs
+chai: !!pairs
+  - name: Masala chai
+  - taste: Sweet # this will be a hash table containing arrays or array of hash tables in json
+
+chai: !!pairs [name: Masala chai, taste: Sweet]
+
+---
+
+# !!set - will allow the user to have unique values for ex like email
+unique_spices: !!set
+  ? cardamon
+  ? ginger
+  ? cloves
+
+# dictionary !!omap
+chai: !!omap
+  - Masala chai:
+    price: 3$
+    size: medium
+    taste: sour
+  - Vanilla chai:
+    price: 4$
+    size: regular
+    taste: sweet
+  
+---
+
+"chai": "Its a drink that tastes sweeter when you add sugar to it."
+
+... # document finished here
+```
+
+# **_Complete YAML Course - Beginner to Advanced for DevOps and more!_**
+
+[![Complete YAML Course - Beginner to Advanced for DevOps and more!](https://img.youtube.com/vi/IA90BTozdow/0.jpg)](https://youtu.be/IA90BTozdow?si=eybtMuagsnxHHfzu)
+
+> Its a data format used to exchange data. In YAML, we can store only data and not commands. Where Serialisation is the process of converting the data objects in complex data structure into a stream or series of bytes that saves the state of this object in a form that is easily transmittable. In YAML, we can store documents and data objects.
+
+
+YAML(is a markup language that is used to store data and known as data serialisation language used in configuration files) files are serialized representations of:
+- Application configurations (Docker)
+- Infrastructure states (Kubernetes)
+
+Benifits
+  - Simple & easy to read
+  - It has a strict syntax - Indentation is important
+  - Easily convertable to JSON, XML.
+  - More powerfull when representing complex data
+  - Parsing is easy.
+
+```json
+// this is json representation
+{
+  "name": "Masala Chai",
+  "price": 3,
+  "size": "medium",
+  "ingredients": {
+    "tea": "black_tea",
+    "liquid": {
+      "water": "200ml",
+      "milk": "100ml"
+    },
+    "spices": [
+      "ginger",
+      "cinnamon",
+      "cardamom"
+    ]
+  }
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8">
+<School name="Kendriya Vidhyalay" address="CCI Bokajan">
+ <Students>
+    <Student>
+       <name>"Sumanta Bhattacharya"</name>
+       <roll_no>1</roll_no>
+       <marks>69.8%</marks>
+    </Student>
+ </Students>
+</School>
+```
