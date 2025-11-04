@@ -880,3 +880,4 @@ Example -> Get Discord chat
 [0, 1, 1.3 3.5, .23]
 ```
 
+<!-- convert to embeddings then store it to vector db like pinecode then serve it to AI and the user input to get the output, this way user doesnt have to send the pdf again again because AI doesnt have memories if not then it make more bill as this reduces the promt size drastically-->
