@@ -5,15 +5,20 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 async function main() {
     const completion = await groq.chat.completions.create(
         {
+            temperature: 0.3, // default is 1.0
+            top_p: 1.0, // range - 0.0 to 1.0
+            stop: null,
+            max_completion_tokens: 300, // 225-240 words
             model: 'llama-3.3-70b-versatile',  
             messages: [
                 {
                     role: 'system',
-                    content: 'You are Jarvis, a smart personal assistant. Be always polite'
+                    content: 'You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?.'
                 },
                 {
                     role: 'user',
-                    content: 'Who are you?'
+                    content: `Review: These headphones arrived quickly and look great, but the left earcup stopped working after a week.
+                    Sentiment:`
                 }
             ]
         }
