@@ -332,4 +332,8 @@ Benifits
 </School>
 ```
 
+# ***What is Langchain and vector databases***
+
+[![What is Langchain and vector databases](https://img.youtube.com/vi/DcNxg61kSFc/0.jpg)](https://youtu.be/DcNxg61kSFc?si=PzvRI1jUN1G19S2R)
+
 <!-- 21st.dev -->
