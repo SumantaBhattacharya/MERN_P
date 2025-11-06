@@ -15,7 +15,8 @@ async function main() {
             messages: [
                 {
                     role: 'system',
-                    content: `You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?. Output must be a single word`
+                    content: `You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?. You must return the result in valid JSON structure.
+                    example: {"sentiment": "Negative"}`
                 },
                 {
                     role: 'user',
@@ -26,7 +27,7 @@ async function main() {
         }
     )
 
-    console.log(completion.choices[0].message.content);// in completion we get an array choices 
+    console.log(JSON.parse(completion.choices[0].message.content));// in completion we get an array choices 
 
 }
 
