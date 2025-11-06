@@ -340,24 +340,4 @@ Benifits
 
 [![What are Vector Embeddings? | Pinecone DB | ChatGPT](https://img.youtube.com/vi/1EookJWbvQM/0.jpg)](https://youtu.be/1EookJWbvQM?si=YnzuM6q9zpQY-see)
 
-## **Takeaways - Real-World Analogy**
-
-**Example** with words like King, Queen, Prince, Girl — showing how similar meanings are mapped close together numerically.
----
-Problem with Direct Prompting
-Why sending entire documents (like PDFs) to ChatGPT isn’t efficient.
-Token limits and cost problems.
-Building a Scalable Architecture
----
-
-![Vector Embeddings](Vector_Embeddings-1.png)
-
-```
-Convert PDF → Text → Embeddings → Store in Pinecone DB.
-```
-*When a user asks a question, convert it to a vector, storing vectors in a specialized vector database (like Pinecone) and search for semantically similar chunks.
-Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
-
-![alt text](Vector_Embeddings-2.png)
-
 <!-- 21st.dev -->
