@@ -16,18 +16,36 @@ async function main() {
                 {
                     role: 'system',
                     content: `You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?. You must return the result in valid JSON structure.
-                    example: {"sentiment": "Negative"}`
+                     Respond only with JSON using this format:
+                    {
+                        "sentiment_analysis": {
+                            "sentiment": "",
+                            "confidence_score": 1 to 10,
+                            "rating": { type: "number" },
+                            "key_phrases": [
+                                {
+                                    "phrase": "string",
+                                    "sentiment": "positive|negative|neutral"
+                                }
+                            ],
+                            "summary": "One sentence summary of the overall sentiment"
+                        }
+                    }`
                 },
                 {
                     role: 'user',
                     content: `Review: These headphones arrived quickly and look great, but the left earcup stopped working after a week.
                     Sentiment:`
                 }
-            ]
+            ],
+            response_format: { type: "json_object" }
         }
     )
 
-    console.log(JSON.parse(completion.choices[0].message.content));// in completion we get an array choices 
+    let data = (JSON.parse(completion.choices[0].message.content));// in completion we get an array choices 
+    console.log(data);
+
+    console.log(data.sentiment_analysis.key_phrases);
 
 }
 
