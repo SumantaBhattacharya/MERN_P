@@ -9,11 +9,13 @@ async function main() {
             top_p: 1.0, // range - 0.0 to 1.0
             stop: null,
             max_completion_tokens: 300, // 225-240 words
+            frequency_penalty: 1.0, // word repetition
+            presence_penalty: 0.3, // diversity
             model: 'llama-3.3-70b-versatile',  
             messages: [
                 {
                     role: 'system',
-                    content: 'You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?.'
+                    content: `You are SigmaGPT, a smart review grader. Your task is to Classify the review as positive, neutral or nagative?. Output must be a single word`
                 },
                 {
                     role: 'user',
