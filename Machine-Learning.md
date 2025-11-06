@@ -882,6 +882,24 @@ Example -> Get Discord chat
 
 <!-- convert to embeddings then store it to vector db like pinecode then serve it to AI and the user input to get the output, this way user doesnt have to send the pdf again again because AI doesnt have memories if not then it make more bill as this reduces the promt size drastically-->
 
+**Example** with words like King, Queen, Prince, Girl — showing how similar meanings are mapped close together numerically.
+---
+Problem with Direct Prompting
+Why sending entire documents (like PDFs) to ChatGPT isn’t efficient.
+Token limits and cost problems.
+Building a Scalable Architecture
+---
+
+![Vector Embeddings](Vector_Embeddings-1.png)
+
+```
+Convert PDF → Text → Embeddings → Store in Pinecone DB.
+```
+*When a user asks a question, convert it to a vector, storing vectors in a specialized vector database (like Pinecone) and search for semantically similar chunks.
+Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
+
+![Vector_Embeddings-2](Vector_Embeddings-2.png)
+
 **Agent SDK** = 
 > A framework for building AI agents (like LangChain)
 
