@@ -769,7 +769,7 @@ Used to improve the capacity of LLM's on a wide range of common and complex task
 
 <!-- to structure the output -->
 
-# <h3>Promt</h3>
+## <h3>Promt</h3>
 
 <p style="
   font-weight: 400;
@@ -811,6 +811,10 @@ sentiment: negative
 <!-- ![standardPromtingAndchai-thoghtPromting](standardPromtingAndchai-thoghtPromting.png) -->
 
 ![standardPromtingAndchai-thoghtPromting](https://promptengineering.org/content/images/2023/04/image-11.png)
+
+## <h3>Tool Calling</h3>
+
+Used to interact with external resouces, scuh as API's, databases and the web.
 
 ## **What are Vectors?** 
 
