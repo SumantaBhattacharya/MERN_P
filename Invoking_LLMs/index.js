@@ -16,19 +16,9 @@ async function main() {
                 {
                     role: 'system',
                     content: `You are SigmaGPT, a interview grade assistant. Your task is to generate candidate review evaluation score.
-                     Respond only with JSON using this format:
-                        {
-                            "sentiment_analysis": {
-                                "sentiment": "",
-                                "confidence_score": 1 to 10,
-                                "accuracy" : number (1-10 scale),
-                                "pass" : boolean (true or false),
-                                "rating": { type: "number" },
-                            "summary": "One sentence summary of the overall sentiment"
-                        }
-                    }
+                    Respond only with JSON.
                     The response must:
-                        1. Include ALL fields shown above
+                        1. Include ALL fields
                         2. Use only the exact field names shown
                         3. Follow the exact data type specified
                         4. Contain ONLY the JSON object and nothing else
@@ -50,14 +40,32 @@ async function main() {
                     A: let is block scoped, avoiding the function scope quirks and redeclaration issues of var.`
                 }
             ],
-            response_format: { type: "json_object" }
+            response_format: { type: "json_schema",
+                schema: {
+                    type: "object",
+                    properties: {
+                        overall_evaluation: {
+                            type: "object",
+                            properties: {
+                                // interviewer_Q: { type: "string" },
+                                total_questions: { type: "number" },
+                                // Candidate_answer: { type: "string" },
+                                correct_answers: { type: "number" },
+                                confidence_score: { type: "number" },
+                                accuracy: { type: "number" },
+                                rating: { type: "number" },
+                                pass: { type: "boolean" },
+                                summary: { type: "string" }
+                            }
+                        }
+                    }
+                }
+             }
         }
     )
 
     let data = (JSON.parse(completion.choices[0].message.content));// in completion we get an array choices 
-    console.log(data);
-
-    console.log(data.sentiment_analysis.key_phrases);
+    console.log("📊 Interview Evaluation:", data);
 
 }
 
