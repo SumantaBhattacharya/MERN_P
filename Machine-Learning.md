@@ -816,6 +816,8 @@ sentiment: negative
 
 Used to interact with external resouces, scuh as API's, databases and the web.
 
+<!-- bascially, a way an ML can interact with other resouces e.g., Web search (to stay updated from multiple sources), calendar tool (so it know the current time and date. it refer to as tool use or function calling) -->
+
 ## **What are Vectors?** 
 
 <p style="
