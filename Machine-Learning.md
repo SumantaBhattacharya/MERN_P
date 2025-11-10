@@ -906,7 +906,25 @@ Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
 
 ![Vector_Embeddings-2](Vector_Embeddings-2.png)
 
-**Agent SDK** = 
+# ***What is Agentic AI***
+
+[AI Agents]
+
+- *`AI` Agents & Agentic workflow*
+  - *Autonomy*
+  - *Planning, iteration and feedback*
+  - *co-ordination*
+
+- REQUIREMENTS
+  - ***LLM*** - *Large Language Model*
+  - ***Memory***
+  - ***Tool Calls***
+    - ***NLP*** - *Natural Language Processing*
+
+- AI Agents vs LLMs
+  - 
+
+### **Agent SDK** = 
 > A framework for building AI agents (like LangChain)
 
 OpenAI Agent SDK
@@ -921,3 +939,4 @@ OpenAI Agent SDK
 ">
 
 </p>
+
