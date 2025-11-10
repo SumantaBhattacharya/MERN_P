@@ -11,7 +11,13 @@ https://app.tavily.com/home
 ## **npm install**
 ```bash
 npm i groq-sdk
+npm i @tavily/core
 ```
+
+## **Visited sites**
+- [*tavily-quickstart*](https://docs.tavily.com/documentation/quickstart)
+- [*tavily-search-depth*](https://docs.tavily.com/documentation/api-reference/endpoint/search#body-search-depth)<!-- basic is the default -->
+- [*tavily-search-max-results*](https://docs.tavily.com/documentation/api-reference/endpoint/search#body-max-results)
 
 <!-- https://serper.dev/ -->
 <!-- https://brave.com/search/api/ -->
