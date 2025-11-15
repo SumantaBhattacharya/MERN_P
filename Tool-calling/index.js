@@ -21,8 +21,7 @@ async function main() {
       content: `You are a SigmaGPT, a smart personal assistant who answers the asked questions.
         You have access to a tool called webSearch which you can use to search the web for information.
         1. searchWeb({query}: {query: string}) //Search the web for information and real time data on the internet.
-        current date and time: ${new Date().toUTCString()}
-        `,
+        current date and time: ${new Date().toUTCString()}`,
     },
     // {
     //   role: "user",
@@ -35,14 +34,13 @@ async function main() {
       type: "function",
       function: {
         name: "webSearch", // tool/function name
-        description:
-          "Search the web for information and real time data on the internet.",
+        description: "Search the web for information and real time data on the internet.",
         parameters: {
           type: "object",
           properties: {
             query: {
               type: "string",
-              description: "The search query to perform search on.",
+              description: "The search query to perform web search on.",
             },
           },
           required: ["query"],
@@ -62,7 +60,7 @@ async function main() {
 
     message.push({
       role: "user",
-      content: "question",
+      content: question,
     });
 
     while (true) {
@@ -116,7 +114,7 @@ async function main() {
 
 main().catch(console.error);
 
-async function webSearch({ query, maxResults = 1 }) {
+async function webSearch({ query }) {
   //{query} are for object destructuring
   console.log("Calling web search...");
   const response = await tvly.search(query);
