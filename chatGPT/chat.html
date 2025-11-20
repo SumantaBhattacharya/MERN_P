@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Interaction</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/chatgpt.svg">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: 'FriendlyRobot';
+      src: url('/assets/Fonts/friendlyRobot.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html,
+    body {
+      background-color: #151517;
+      height: 100%;
+    }
+
+    ::selection {
+      background-color: #000;
+      color: #fff;
+    }
+
+    ::-moz-selection {
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Custom scrollbar styling */
+    #chatInput::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #chatInput::-webkit-scrollbar-track {
+      background: #374151;
+      border-radius: 4px;
+    }
+
+    #chatInput::-webkit-scrollbar-thumb {
+      background: #6B7280;
+      border-radius: 4px;
+    }
+
+    #chatInput::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen p-8 overflow-y-auto overflow-x-hidden">
+
+  <!-- Chat Container -->
+  <div class="max-w-3xl mx-auto" id="chat-container">
+    <h1 class="font-[FriendlyRobot] text-white text-3xl font-bold mb-8 text-center">ChatGPT Interaction</h1>
+
+    <!-- Example Messages -->
+    <!-- <div class="font-serif flex justify-end mb-6 text-white">
+      <div class="bg-neutral-800 p-4 rounded-lg max-w-xs md:max-w-md lg:max-w-lg break-words">
+        <p>Hi, how are you ?</p>
+      </div>
+    </div> -->
+    
+    <!-- <div class="font-serif flex justify-start mb-6 text-white">
+      <div class="p-4 rounded-lg max-w-xs md:max-w-md lg:max-w-lg break-words">
+        <p>I'm good, sir!</p>
+      </div>
+    </div> -->
+
+  </div>
+
+  <!-- extra space -->
+  <div class="h-20 bg-opacity-20 flex items-center justify-center rounded-lg"></div>
+
+  <!-- Chat Input Fixed at Bottom -->
+  <div class="fixed bottom-0 left-0 right-0  p-4 bg-[#151517] border-neutral-700"> <!-- border-t -->
+    <div class="flex justify-center items-center gap-4 max-w-3xl mx-auto">
+
+      <!-- Textarea -->
+      <textarea id="chatInput"
+        class="font-serif flex-1 bg-neutral-800 text-white p-4 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[rgba(102,126,234,0.3)] overflow-y-auto"
+        placeholder="Type your message..." rows="1"></textarea>
+
+      <!-- Send Button -->
+      <div class="flex-shrink-0 flex items-center justify-center">
+        <button
+          id="Send-Button"
+          class="bg-black text-white p-3 rounded-full hover:bg-neutral-800 transition-colors flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const textarea = document.getElementById('chatInput');
+    const chatContainer = document.getElementById('chat-container');
+
+    const askBtn = document.querySelector("#Send-Button");
+
+    const MAX_HEIGHT = 300; // Increased from 200 to 300px for more expansion
+
+    textarea?.addEventListener('keyup', handleEnter);
+    askBtn?.addEventListener("click", handleClick);
+
+    const loading = document.createElement("div");
+    loading.className = "text-white";
+    loading.textContent = "...";
+    
+
+    async function generate(text) {
+      /* i. append message to UI. ii. send it to the LLM. iii. append response to the UI. */
+
+      // i. append message to UI.
+      const msgContainer = document.createElement('div');
+      msgContainer.className = "font-serif flex justify-end mb-6 text-white";
+
+      const msg = document.createElement('div')
+      msg.className = "bg-neutral-800 p-4 rounded-lg max-w-xs md:max-w-md lg:max-w-lg break-words"
+
+      const paragraph = document.createElement("p");
+      
+      paragraph.textContent = text;
+
+      msg.appendChild(paragraph);
+      msgContainer.appendChild(msg);
+
+      chatContainer?.appendChild(msgContainer)
+
+      textarea.value = ""
+      textarea.style.height = 'auto';
+      textarea.style.minHeight = '44px'; // Reset to initial height
+      textarea.style.overflowY = 'auto'; // Reset scrollbar
+
+      // ii. send it to the LLM.
+      const assistantMessage = await callServer(text); //  text will still go to the parameter because we're passing text (the variable), not textarea.value. 
+      console.log("Assistant Message: " , assistantMessage);
+
+      // iii. append response to the UI.
+      const assistantMsgContainer = document.createElement('div');
+      assistantMsgContainer.className = "font-serif flex justify-start mb-6 text-white";
+
+      const assistantMsg = document.createElement('div')
+      assistantMsg.className = "p-4 rounded-lg max-w-xs md:max-w-md lg:max-w-lg break-words"
+
+      const assistantParagraph = document.createElement("p");
+
+      assistantParagraph.textContent = assistantMessage;
+
+      assistantMsg.appendChild(assistantParagraph); 
+      assistantMsgContainer.appendChild(assistantMsg);
+
+      chatContainer?.appendChild(assistantMsgContainer)
+
+    };
+
+    async function callServer (inputText) {
+      const response = await fetch("http://localhost:3001/api/chat/chat-to-chatGPT", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          msg: inputText
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json(); // parting the response from fetch
+      return result.data.message;
+    }
+
+    async function handleEnter(event) {
+      // console.log(event);
+      if (event.key === "Enter") {
+        event.preventDefault();
+
+        const text = textarea?.value.trim();
+
+        if (!text) {
+          return;
+        }else{
+          await generate(text);
+        }
+      }
+    }
+
+    async function handleClick(event) {
+      // handleClick is doing the same thing as handleEnter both adding the user text to the ui by either enter key or click button
+      const text = textarea?.value.trim(); // Button clicks don't have the same default behavior as Enter key in textareasClicking a button doesn't create new lines or whitespace
+
+      if (!text) {
+        return;
+      }else{
+        await generate(text);
+      }
+
+    }
+    
+    textarea.addEventListener('input', function () {
+      // Reset height to recalc properly
+      this.style.height = 'auto';
+      // Allow more expansion with higher max height
+      this.style.height = Math.min(this.scrollHeight, MAX_HEIGHT) + 'px';
+      
+      // Always show scrollbar when content overflows
+      if (this.scrollHeight > MAX_HEIGHT) {
+        this.style.overflowY = 'scroll';
+      } else {
+        this.style.overflowY = 'auto';
+      }
+    });
+
+     window.addEventListener('load', function() {
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 100);
+    });
+
+    // Initialize
+    textarea.style.height = 'auto';
+    textarea.style.minHeight = '44px'; // Initial height
+  </script>
+
+</body>
+</html>
