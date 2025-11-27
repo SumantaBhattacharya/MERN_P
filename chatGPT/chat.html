@@ -56,6 +56,33 @@
     #chatInput::-webkit-scrollbar-thumb:hover {
       background: #9CA3AF;
     }
+
+    /* Loader Styles */
+    .loader {
+      width: 120px;
+      height: 20px;
+      background: 
+        linear-gradient(#000 50%,#0000 0),
+        linear-gradient(#0000 50%,#000 0),
+        linear-gradient(#000 50%,#0000 0),
+        linear-gradient(#0000 50%,#000 0),
+        linear-gradient(#000 50%,#0000 0),
+        linear-gradient(#0000 50%,#000 0)
+        #ddd;
+      background-size: calc(100%/6 + 1px) 200%;
+      background-repeat: no-repeat;
+      animation: l12 2s infinite;
+    }
+    @keyframes l12 {
+      0%     {background-position: calc(0*100%/5) 100%,calc(1*100%/5)   0%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+      16.67% {background-position: calc(0*100%/5)   0%,calc(1*100%/5)   0%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+      33.33% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+      50%    {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+      66.67% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+      83.33% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5)   0%,calc(5*100%/5)   0%}
+      100%   {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5)   0%,calc(5*100%/5) 100%}
+    }
+
   </style>
 </head>
 
@@ -117,10 +144,6 @@
     textarea?.addEventListener('keyup', handleEnter);
     askBtn?.addEventListener("click", handleClick);
 
-    const loading = document.createElement("div");
-    loading.className = "text-white";
-    loading.textContent = "...";
-    
 
     async function generate(text) {
       /* i. append message to UI. ii. send it to the LLM. iii. append response to the UI. */
@@ -146,9 +169,25 @@
       textarea.style.minHeight = '44px'; // Reset to initial height
       textarea.style.overflowY = 'auto'; // Reset scrollbar
 
+      // before sending it to llm present a laoding state
+      const loadingContainer = document.createElement("div");
+      loadingContainer.className = "flex justify-start mb-6"
+      
+      const loading = document.createElement('div');
+      loading.className = "loader mb-6 ml-4";
+
+      loadingContainer.appendChild(loading);
+      chatContainer?.appendChild(loadingContainer);
+
       // ii. send it to the LLM.
       const assistantMessage = await callServer(text); //  text will still go to the parameter because we're passing text (the variable), not textarea.value. 
       console.log("Assistant Message: " , assistantMessage);
+
+      // remove the loading state before the assistant message
+      const loader = document.querySelector(".loader"); // but if create the loader outside the generate() function it will remove the loader directly as it get created for once only thats why we need the laoder inside the generate so it can get genearted before starting of every new text content generation
+      if (loader) {
+        loader.remove();
+      }
 
       // iii. append response to the UI.
       const assistantMsgContainer = document.createElement('div');
@@ -165,7 +204,7 @@
       assistantMsgContainer.appendChild(assistantMsg);
 
       chatContainer?.appendChild(assistantMsgContainer)
-
+      
     };
 
     async function callServer (inputText) {
