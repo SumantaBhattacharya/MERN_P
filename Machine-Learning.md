@@ -1,17 +1,22 @@
 # **What is** <span style="color: #FFD369;">**AI?**</span>
 
+<span style="color: #FFD369;">**AI**</span> <p style="font-weight: 400;font-size: 3vw;color: #fff; line-height: 1.5;text-align: left;margin-top: 0.5em; color: #fff;
+">is a technology that allows computers or systems to perform task that typically requires human intelligence.
+</p>
 
-<span style="color: #FFD369;">**AI**</span> is a technology that allows computers or systems to perform task that
-typically requires human intelligence.
 e.g, 
 - i. *Patten Recognition.* 
 - ii. *Speach Recognition.* 
 - iii. *Image Analysis*
 
-<span style="color: #FFD369;">M</span>L
+<span style="color: #FFD369;">M</span><p style="font-weight: 400;font-size: 3vw;color: #fff;line-height: 1.5;text-align: left;margin-top: 0.5em; color: #fff;
+">L
 are those algorithms that learn trained on data rather than programming.
+</p>
 
+```markdown
 `ML` is a subdomain of `AI`. so, we can say all `ML` is `AI` but `AI` is not `ML` like Rule Based systems.
+```
 
 - `ML` -
   - i. **Linear Regression**, 
@@ -170,7 +175,9 @@ style="
 }
 </style>
 
+```
 `y(function of x(output)) = f(features)(x(input))`
+```
 
 <h3 style="
   font-weight: 700;           /* bold for 'Machine' */
@@ -188,18 +195,19 @@ style="
 - ii. <span style="color: #69cbffff;">Regression</span> problems
 
 <h3 style="
-  font-weight: 700;           /* bold for 'Machine' */
+  font-weight: 700;           
   font-size: 4vw;
   text-decoration: underline;
   letter-spacing: 1px;
   line-height: 1.2;
-  text-align: left;
-  margin: 0;
+  margin: 2;
 ">
  <span style="color: #FFD369;">Classification</span>  <span style="color: #FFFFFF; font-weight: 500;">Problems</span>&nbsp;
 </h3>
 
+```Markdown
 > Classification Problems are those problems where based on the input we map to pre defined categories or classes
+```
 
 * i. `Binary Classification` - *Can be output of 2 values either yes or no*
 * ii. `Multiclass Classification` - *When output has more than two categories e,g. Sentiment Analysis*.
@@ -486,7 +494,10 @@ font-weight: 700;           /* bold for 'Machine' */
 
 > `Regression are the problems where we try to predict numerical algorithm`
 
+
+```Markdown
 > `Y =f(x)`*(depended variable will be some fuinction of the independed variable)* : *here the input (x) is independed variable and output(y) is depended variable*
+```
 
 <h3 style="font-weight: 700;           /* bold for 'Machine' */font-size: 4vw;text-decoration: underline; letter-spacing: 1px; line-height: 1.2; text-align: left; margin: 0;
 ">
@@ -578,7 +589,7 @@ or
     }
 
     h3 {
-        font-family: 'Courier New', monospace;
+        /* font-family: 'Courier New', monospace; */
         font-size: 20px;
         font-weight: bold;
         color: #FCD97D;
@@ -587,7 +598,7 @@ or
     }
     
     p {
-        font-family: 'Courier New', monospace;
+        /* font-family: 'Courier New', monospace; */
         font-size: 20px;
         font-weight: bold;
         color: #fff;
@@ -691,13 +702,7 @@ AI Branch</h3>
 <h3>
 Tokens</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 The smallest unit of text the unit 
 processes, like words or parts of words.
@@ -707,13 +712,7 @@ processes, like words or parts of words.
 <h3>
 Context</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 The surrounding text or information the model uses to understand and generate relevent reponses. 
 e.g.,
@@ -723,30 +722,17 @@ If you send a long prompt + previous conversation history — that’s your cont
 <h3>
 Context window</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 The maximum number of tokens an LLM can read and use at the same time to generate or pridict text.
 </p>
 
 <!-- basically how much or what amount of token can an ai can process at a time -->
 
-
 <h3>
 Inference</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 The process where an LLM takes input text and generates an output based on what it has learned.
 </p>
@@ -756,13 +742,7 @@ The process where an LLM takes input text and generates an output based on what 
 <h3>
 Promt Engineering</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 Used to improve the capacity of LLM's on a wide range of common and complex tasks such as question answering and arithmetic reasoning.
 </p>
@@ -771,13 +751,7 @@ Used to improve the capacity of LLM's on a wide range of common and complex task
 
 ## <h3>Promt</h3>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 A promt is simply the text you send to a large-language model.
 </p>
@@ -791,13 +765,7 @@ A promt is simply the text you send to a large-language model.
 
 <!-- kis bat pr kharcha ho rhe hai or what the conversation is about the general meaning of context is referring to the meaning of context here -->
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #ffffffa4;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 Classify the review as positive, neutral or nagative ?
 Review: These headphones arrived quickly and look great, but the left earcup stopped working after a week.
@@ -820,27 +788,26 @@ Used to interact with external resouces, scuh as API's, databases and the web.
 
 ## **What are Vectors?** 
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #fff;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #fff;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 In this context, a vector is a long sequence of numbers (often hundreds or thousands of dimensions) called an embedding.
 </p>
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #fff;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #fff;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 An embedding is a numerical representation of an object (like a word, a document, an image, or an audio clip) that captures its meaning and context.
 </p>
+
+## `R`etrieval-`A`ugmented `G`eneration
+<p style="font-weight: 400;font-size: 3vw;color: #ffffffa4;line-height: 1.5;text-align: left;margin-top: 0.5em;
+">
+A Technique where a model first retrieves relevent information from a knowledge source, then uses that information to generate an answer.
+</p>
+
+<!-- basically, tool calling -->
+
+![RAG-01](RAG.png)
+![RAG-02](image-3.png)
 
 <!-- 4 Modules
 Fundamentals of ai
@@ -850,20 +817,27 @@ RAG system
 2 projects
 -->
 
-![image.png](image.png)
+<!-- ![image.png](image.png)
 ![image-1.png](image-2.png)
-![image-2.png](image-1.png)
+![image-2.png](image-1.png) -->
+
+---
+
 
 ```
 -> Find most relative embedding in DB
 -> Question + Relative chunk -> chatGPT
 ```
-<h3 style="text-decoration: none;">
-Langchain gives us tool to handle all of this in an easier way with multiple lannguages such as python or javascript</h3>
 
-```
-Example -> Get Discord chat
-```
+#### Structured data
+- **i.** *Employee data*
+- **ii.** *Ecommerce orders*
+- **iii.** *Sensor Logs*
+
+#### Unstructured data
+- **i.** *Company Policy Documents*
+- **ii.** *Emails*
+- **iii.** *Images*
 
 <h3>Vector Database</h3>
 
@@ -871,7 +845,10 @@ Example -> Get Discord chat
 - `Pine Cone`
 - `Chroma`
 
-> Langchain even provides a wrapper for most popular databases to interact with them.
+<p style="font-weight: 400;font-size: 3vw;color: #fff;line-height: 1.5;text-align: left;margin-top: 0.5em; color: yellow;
+">
+Langchain even provides a wrapper for most popular databases to interact with them.
+</p>
 
 <h3>Vector Embeddings</h3>
 
@@ -896,15 +873,78 @@ Token limits and cost problems.
 Building a Scalable Architecture
 ---
 
-![Vector Embeddings](Vector_Embeddings-1.png)
+![alt text](image-3.png)
 
 ```
 Convert PDF → Text → Embeddings → Store in Pinecone DB.
 ```
-*When a user asks a question, convert it to a vector, storing vectors in a specialized vector database (like Pinecone) and search for semantically similar chunks.
-Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
 
-![Vector_Embeddings-2](Vector_Embeddings-2.png)
+```Markdown
+> *When a user asks a question, convert it to a vector, storing vectors in a specialized vector database (like Pinecone) and search for semantically similar chunks.
+Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
+```
+
+![alt text](image-4.png)
+
+<h3 style="text-decoration: none;">
+Langchain gives us tool to handle all of this in an easier way with multiple lannguages such as python or javascript</h3>
+
+```
+Example -> Get Discord chat
+```
+
+**LangChain and Vector DB**
+
+### **LangChain**
+
+* Documentation reader
+* A developer way to get into AI
+* Give context to AI
+* Use multi-LLM in your apps
+
+### **What is it (LangChain)?**
+
+* Start with PDF summaries
+
+### **Problems**
+
+* Every request →
+* Question + Document → High tokens → More bill
+
+---
+**Embedding**
+
+* Text → Embedding algorithm →
+  [0.8, 0.71, 0.3 …]
+  *(array between 1 and –1)*
+
+* Each number is a score on a relevance scale
+
+### **Example**
+
+* It is a text about YouTube
+* It is about coding
+* Contains history …
+
+### **Problems**
+
+* Where to store these embeddings?
+* Vector store (database for embeddings)
+
+### **Flow**
+
+* Take question and convert to embedding
+
+---
+
+**Solution**
+
+* Take text → Break into chunks
+* Summarize each chunk
+* Find the most relevant chunk to the question
+* Send chunk + question to LLM (ChatGPT etc.)
+
+---
 
 # ***What is Agentic AI***
 
@@ -925,18 +965,22 @@ Send only relevant text to ChatGPT → faster, cheaper, and more accurate.*
   - 
 
 ### **Agent SDK** = 
+```
 > A framework for building AI agents (like LangChain)
-
+```
 OpenAI Agent SDK
 
-<p style="
-  font-weight: 400;
-  font-size: 3vw;
-  color: #fff;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 0.5em;
+<p style="font-weight: 400;font-size: 3vw;color: #fff;line-height: 1.5;text-align: left;margin-top: 0.5em;
 ">
 
 </p>
 
+<!-- 
+
+Swan
+Blood owl
+griffin
+squid
+df
+
+ -->
