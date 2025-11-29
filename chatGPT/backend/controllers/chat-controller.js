@@ -46,3 +46,9 @@ export const chatToChatGPT = asyncHandler(async (req, res) => {
 
     return res.status(200).json(new ApiResponse(200, {message: result}, "Message received successfully"));
 });
+
+export const generateThreadId = asyncHandler(async (req, res) => {
+    const threadId = generateNanoId(35);
+
+    return res.status(200).json(new ApiResponse(200, {threadId}, "Thread Id generated successfully"));
+});
