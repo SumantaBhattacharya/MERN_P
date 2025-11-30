@@ -83,6 +83,21 @@
       100%   {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5)   0%,calc(5*100%/5) 100%}
     }
 
+  .conversation-date {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin: 2rem 0 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .message-time {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+
   </style>
 </head>
 
@@ -133,7 +148,7 @@
     </div>
   </div>
 
-  <script>
+  <script type="module">
     const textarea = document.getElementById('chatInput');
     const chatContainer = document.getElementById('chat-container');
 
@@ -141,11 +156,76 @@
 
     const MAX_HEIGHT = 300; // Increased from 200 to 300px for more expansion
 
+    // initially the heading date will be null
+    let lastConversationDate = null;
+
     textarea?.addEventListener('keyup', handleEnter);
     askBtn?.addEventListener("click", handleClick);
 
+    async function getThreadId() {
+      try {
+        const response = await fetch("/api/chat/generate-threadId", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result.data.threadId;
+      }catch(error){
+        console.log("Error(Failed to get thread ID): ", error);
+        return Date.now().toString(36) + Math.random().toString(36); // .substring()
+      }
+    }
+
+    const threadId = await getThreadId(); // this will be the thread id that will be passed to the llm to save the context of the conversation. this will be the same for the whole conversation.
+
+    function dateHeader () {
+      const options = {day: 'numeric',month: 'long', year: 'numeric'};
+      return new Date().toLocaleDateString('en-US', options);
+    } 
+
+    function timeHeader () {
+      const options = {
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+      }
+
+      return new Date().toLocaleTimeString('en-US', options);
+    }
+
+    function addDateHeader () {
+
+      const currentDateHeader = dateHeader();
+
+      if (!lastConversationDate|| lastConversationDate !== currentDateHeader) {
+
+        // attach the current date header to the chat container
+        const currentDateHeaderContainer = document.createElement("div");
+        currentDateHeaderContainer.className = "conversation-date font-serif";
+        const currentDateHeaderParagraph = document.createElement("p");
+        currentDateHeaderParagraph.textContent = currentDateHeader;
+
+        currentDateHeaderContainer.appendChild(currentDateHeaderParagraph);
+
+        chatContainer.appendChild(currentDateHeaderContainer);
+
+        // update the last coversation date
+        lastConversationDate = currentDateHeader;
+      }
+
+    }
 
     async function generate(text) {
+
+      addDateHeader();
+
       /* i. append message to UI. ii. send it to the LLM. iii. append response to the UI. */
 
       // i. append message to UI.
@@ -162,7 +242,14 @@
       msg.appendChild(paragraph);
       msgContainer.appendChild(msg);
 
-      chatContainer?.appendChild(msgContainer)
+      const timeStamp = document.createElement("div");
+      timeStamp.className = "message-time";
+
+      timeStamp.textContent = timeHeader();
+
+      msg.appendChild(timeStamp);
+
+      chatContainer?.appendChild(msgContainer);
 
       textarea.value = ""
       textarea.style.height = 'auto';
@@ -214,6 +301,7 @@
           "content-type": "application/json"
         },
         body: JSON.stringify({
+          threadId,
           msg: inputText
         })
       });
@@ -267,6 +355,7 @@
       }
     });
 
+    // to scroll to bottom
      window.addEventListener('load', function() {
       setTimeout(() => {
         window.scrollTo({
