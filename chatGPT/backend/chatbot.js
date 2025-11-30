@@ -84,8 +84,18 @@ export async function generate({ userMessage, threadId }) {
 
     console.log('🔍 DEBUG - messages to send:', Messages.map(m => ({role: m.role, content: m.content.substring(0, 50) + '...'})));
 
+    const MAX_RETRIES = 10;
+    let count = 0;
+
     // The loop allows the AI to make multiple tool calls in sequence if needed i. tool call: Search for current weather ii. tool call: Get current date to add context. iii. Final answer combining both results
     while (true) { // so this way ai can use multiple tools at the same time
+
+      if (count > MAX_RETRIES) {
+        return "I couldn't find information related to your query."
+      }
+
+      count++; // increemnt the count
+
       // AI invoke loop
       const chatCompletion = await groq.chat.completions.create({
         model: "llama-3.3-70b-versatile",
@@ -120,9 +130,8 @@ export async function generate({ userMessage, threadId }) {
         ]
 
         myCache.set(threadId, user_assistantConversationHistory); // update the message history
-        console.log(JSON.stringify(myCache.data));
+        // console.log("myCache: ", JSON.stringify(myCache.data));
         console.log('💾 DEBUG - saved to cache:', user_assistantConversationHistory.map(m => ({role: m.role})));
-        console.log();
         
         return assistant_message?.content;
         // break;
