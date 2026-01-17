@@ -53,3 +53,8 @@ GitHub Actions → Docker container jobs
 
 Orchestration:
 Kubernetes → Manages Docker containers -->
+
+CI/CD
+
+Continious Integration
+Continious Delivery (Deployment)
