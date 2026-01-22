@@ -45,6 +45,7 @@ const Products = () => {
             <div style={{textAlign: "center",
                 marginBottom: isMobile ? "2rem" : "3rem"
             }}>
+                {/* Yes, according to SEO and accessibility best practices, each HTML page should have exactly ONE <h1> tag. */}
                 <h1 style={{fontWeight: "bold",color: "#fff",margin: 0,
                     fontSize: isMobile ? "2rem" : "2.5rem",
                 }}>
@@ -59,7 +60,7 @@ const Products = () => {
             </div>
 
             {/* Products Grid */}
-            <div style={{
+            <section style={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${getGridColumns()}, 1fr)`,
                 gap: isMobile ? "1rem" : "1.5rem",
@@ -67,40 +68,40 @@ const Products = () => {
                 margin: "0 auto"
             }}>
                 {isProducts.map((product) => (
-                    <div 
-                        className="card" 
-                        key={product.id}
-                        onClick={() => {
+                    <article className="card" key={product.id}
+                    tabIndex={0}
+                    role='button'
+                    aria-label={`View details for ${product.title}`}
+                    style={{
+                        backgroundColor: "#1f2937",
+                        borderRadius: "12px",
+                        overflow: "hidden",
+                        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "column",
+                        height: "100%",
+                        border: "1px solid #374151",
+                        ":hover": {
+                            transform: "translateY(-5px)",
+                            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
+                            borderColor: "#4b5563"
+                        }
+                    }}
+                    onClick={() => {
+                        navigate(`/product/${product.id}`)
+                    }}
+                    onKeyDown={(e)=>{
+                        if(e.key === "Enter" || e.key === " ") { // Enter or space
+                            e.preventDefault();
                             navigate(`/product/${product.id}`)
-                        }}
-                        style={{
-                            backgroundColor: "#1f2937",
-                            borderRadius: "12px",
-                            overflow: "hidden",
-                            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-                            transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                            cursor: "pointer",
-                            display: "flex",
-                            flexDirection: "column",
-                            height: "100%",
-                            border: "1px solid #374151",
-                            ":hover": {
-                                transform: "translateY(-5px)",
-                                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
-                                borderColor: "#4b5563"
-                            }
-                        }}
+                        }
+                    }}
                     >
                         {/* Product Image */}
-                        <div style={{
-                            width: "100%",
+                        <figure style={{width: "100%", backgroundColor: "#111827", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem", position: "relative",
                             height: isMobile ? "200px" : "250px",
-                            backgroundColor: "#111827",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: "1rem",
-                            position: "relative"
                         }}>
                             <img 
                                 src={product.image} 
@@ -109,15 +110,11 @@ const Products = () => {
                                     maxWidth: "100%",
                                     maxHeight: "100%",
                                     objectFit: "contain",
-                                    filter: "brightness(0.9)"
-                                }}
-                                onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = "https://via.placeholder.com/300x300/111827/6b7280?text=No+Image";
                                 }}
                             />
                             {/* Category Badge */}
-                            <span style={{
+                            <figcaption 
+                            style={{
                                 position: "absolute",
                                 top: "12px",
                                 right: "12px",
@@ -131,18 +128,20 @@ const Products = () => {
                                 letterSpacing: "0.5px"
                             }}>
                                 {product.category}
-                            </span>
-                        </div>
+                            </figcaption>
+                        </figure>
 
                         {/* Product Info */}
-                        <div style={{
+                        <div 
+                        style={{
                             padding: isMobile ? "1rem" : "1.5rem",
                             flexGrow: 1,
                             display: "flex",
                             flexDirection: "column"
                         }}>
                             {/* Title */}
-                            <h4 style={{
+                            <h2 
+                            style={{
                                 fontSize: isMobile ? "1rem" : "1.1rem",
                                 fontWeight: "600",
                                 color: "#fff",
@@ -155,26 +154,27 @@ const Products = () => {
                                 minHeight: "2.8rem"
                             }}>
                                 {product.title}
-                            </h4>
+                            </h2>
 
                             {/* Price */}
-                            <div style={{
+                            <div 
+                            style={{
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "space-between",
                                 marginBottom: "1rem"
                             }}>
-                                <h5 style={{
-                                    fontSize: "1.5rem",
-                                    fontWeight: "bold",
-                                    color: "#60a5fa",
-                                    margin: 0
-                                }}>
+                                <span 
+                                // Price not a heading
+                                style={{fontSize: "1.5rem", fontWeight: "bold", color: "#60a5fa", margin: 0}}
+                                aria-label={`Price: $${product.price}`}
+                                >
                                     ${product.price}
-                                </h5>
+                                </span>
                                 
                                 {/* Rating */}
-                                <div style={{
+                                <div 
+                                style={{
                                     display: "flex",
                                     alignItems: "center",
                                     gap: "4px",
@@ -191,7 +191,8 @@ const Products = () => {
                             </div>
 
                             {/* Description */}
-                            <p style={{
+                            <p 
+                                style={{
                                 fontSize: "0.875rem",
                                 color: "#9ca3af",
                                 margin: "0 0 1.5rem 0",
@@ -206,12 +207,28 @@ const Products = () => {
                             </p>
 
                         </div>
-                    </div>
+                    </article>
                 ))}
-            </div>
+            </section>
 
         </div>
     );
 };
 
 export default Products;
+
+/*
+KEYBOARD NAVIGATION
+
+tabIndex = "0" (Focusable)
+tabIndex = "-1" (Focusable with )
+tabIndex ? "0" (higher priorities)
+
+Only these are focusable by default:
+
+<button>
+<a href>
+<input>
+<select>
+<textarea>
+*/
