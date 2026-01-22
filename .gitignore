@@ -12009,3 +12009,8 @@ chatGPT/node_modules/node-cache/tsconfig.json
 chatGPT/node_modules/node-cache/_src/test/typedefinition_test.ts
 chatGPT/node_modules/node-cache/lib/node_cache.js
 chatGPT/chat.html
+redux-app/public/favicon.ico
+redux-app/public/logo192.png
+redux-app/public/logo512.png
+# redux-app/public/referrenceApp.png
+redux-app/src/logo.svg
