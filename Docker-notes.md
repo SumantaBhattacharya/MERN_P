@@ -18,7 +18,7 @@
 - iv. **Network**(
   - iv.i. ***Portability***: *`VMs` can be moved between physical servers*).   
 
-### The Problem with Virtual Machines which solved by containers are
+## The Problem with Virtual Machines which solved by containers are
 - i. **Heavyweight**
   - i.i. *Each VM includes a full OS which needed*
       - ***storage***
@@ -43,9 +43,43 @@
 
 `Previously A application needed its own server then VM came into the picture there each application needed multiple OS to run on single server now Docker has come to run multiple apllications on single OS in single server.`
 
-<!-- Containers run on top of VM -->
+> *Containers run on top of VM*
+
+`Docker runs on either hyper v or wsl i or ii`
+
+## Docker <span style="color: rgb(0, 189, 228); ">Commands</span>
+
+* docker pull IMAGE_NAME
+* docker images
+* docker run IMAGE_NAME
+* docker run -it IMAGE_NAME
+* docker stop CONT_NAME or CONT_ID
+* docker start CONT_NAME or CONT_ID
+* docker ps
+* docker ps -a
+
+```docker
+docker
+docker --version
+docker pull IMAGE_NAME
+docker images
+docker run hello-world
+docker ps -a # includes Running and Exited both
+docker ps # includes Running containers only
+docker run -it IMAGE_NAME # -it = interactive terminal
+```
+
+> `STATUS - Created, Running, Exited, Up, Down, Paused`
+
+<!-- https://hub.docker.com/_/ubuntu -->
 
 <!-- 
+
+CI/CD
+
+Continious Integration
+Continious Delivery (Deployment)
+
 CI/CD Tools:
 Jenkins → Builds Docker images in pipelines
 GitLab CI → Native Docker support
@@ -53,8 +87,3 @@ GitHub Actions → Docker container jobs
 
 Orchestration:
 Kubernetes → Manages Docker containers -->
-
-CI/CD
-
-Continious Integration
-Continious Delivery (Deployment)
