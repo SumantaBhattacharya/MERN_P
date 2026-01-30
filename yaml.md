@@ -1,7 +1,6 @@
+<!-- ## **YAML - A complete course for developers**
 
-## **YAML - A complete course for developers**
-
-[![YAML - A complete course for developers](https://img.youtube.com/vi/NaoMEy_urlI/0.jpg)](https://youtu.be/NaoMEy_urlI?si=zoqkoiNJksy0H_3B)
+[![YAML - A complete course for developers](https://img.youtube.com/vi/NaoMEy_urlI/0.jpg)](https://youtu.be/NaoMEy_urlI?si=zoqkoiNJksy0H_3B) -->
 
 > YAML(Ain't Markup Language) - is a data serialisation format. e.g., XML(eXtensible Markup Language), JSON(JavaScript Object Notation). Extension starts ends with .yaml or .yml
 
@@ -178,9 +177,8 @@ chai: !!omap
 ... # document finished here
 ```
 
-# **_Complete YAML Course - Beginner to Advanced for DevOps and more!_**
-
-[![Complete YAML Course - Beginner to Advanced for DevOps and more!](https://img.youtube.com/vi/IA90BTozdow/0.jpg)](https://youtu.be/IA90BTozdow?si=eybtMuagsnxHHfzu)
+<!-- # **_Complete YAML Course - Beginner to Advanced for DevOps and more!_**
+[![Complete YAML Course - Beginner to Advanced for DevOps and more!](https://img.youtube.com/vi/IA90BTozdow/0.jpg)](https://youtu.be/IA90BTozdow?si=eybtMuagsnxHHfzu)-->
 
 > Its a data format used to exchange data. In YAML, we can store only data and not commands. Where Serialisation is the process of converting the data objects in complex data structure into a stream or series of bytes that saves the state of this object in a form that is easily transmittable. In YAML, we can store documents and data objects.
 
