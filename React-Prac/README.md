@@ -17,3 +17,8 @@ If you are developing a production application, we recommend using TypeScript wi
 
 -->
 
+React projects typically use one of these:
+
+dev (for Vite/Next.js)
+
+start or react-scripts start (for Create React App)
