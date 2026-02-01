@@ -80,11 +80,12 @@
             Toggle Theme
         </button>
     </div>
-    <script>
+    <script type="module">
+        import { setDANDL } from "./setDANDL.js";
         // the idea is if the user set the webpage to dark mode which was previously in light mode indefault to save the user preference in local storage
 
         // this is for the system to detect if their website should open dark or light
-        function setDANDL() {
+        /*export function setDANDL() {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 // document.querySelector("body").classList.add("dark")
                 document.body.classList.add("dark")
@@ -93,7 +94,7 @@
                 document.body.classList.remove("dark");
                 document.body.classList.add("light");
             }
-        }
+        }*/
 
         setDANDL();
 
