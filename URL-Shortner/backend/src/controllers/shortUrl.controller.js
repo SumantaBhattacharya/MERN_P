@@ -37,7 +37,7 @@ const createShortUrl = asyncHandler(async (req, res) => { // Controller → no n
 });
 
 const RedirectUrl = asyncHandler(async (req,res)=>{
-  const {short_url} = req.params;
+  const {short_url} = req.params; // :short_url
 
   if (!short_url) {
     throw new BadRequestError("Short URL parameter is required");
