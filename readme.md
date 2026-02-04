@@ -149,3 +149,66 @@ Project Overview of Zoom Clone
  - `Docker Volumes` 
  - `Volumes Commands`
  - `Revisiting Docker Network`
+
+
+# ***CI/CD - Complete Tutorial***
+<!-- delta CI/CD topics covered -->
+- `Continuous Integration & Continuous Delivery`
+- `CI/CD Pipeline`
+- `CI/CD Tools`
+- `Working with Github Actions`
+- `.yaml for Automation`
+- `Set up JS project with Jest`
+- `Our first CI setup`
+- `CI/CD for MERN Project`
+- `Set up AWS EC2`
+- `CI/CD for Backend Module`
+- `Automate .env backup`
+- `CI/CD for Frontend Module`
+- `Workflow Summary`
+
+CI/CD
+
+Continious Integration
+Continious Delivery (Deployment)
+
+CI/CD Tools:
+Jenkins → Builds Docker images in pipelines
+GitLab CI → Native Docker support
+GitHub Actions → Docker container jobs
+
+Orchestration:
+Kubernetes → Manages Docker containers 
+
+# ***Kubernetes***
+- `What is Kubernetes?`
+- `Components - Node & Pod`
+- `Service & Ingress`
+- `ConfigMap & Secret`
+- `Volumes`
+- `Deployment & StatefulSet`
+- `Kubernetes Architecture`
+- `Summary`
+- `Local Setup - Minikube & Kubectl`
+- `Installation`
+- `Kubectl Commands [GET]`
+- `CREATE Command`
+- `Debugging Commands [LOGS & EXEC]`
+- `APPLY Command`
+- `YAML Configurations`
+- `Status in Configuration`
+- `Deploying mongo-app in K8s`
+- `Configuring Mongodb`
+- `Configuring Mongo Express`
+- `Namespace in K8s`
+- `Namespace Use cases`
+- `Custom Namespaces`
+- `Scope`
+- `Kubens Installation`
+- `Ingress in K8s`
+- `Ingress Controller`
+- `Configure app with Ingress`
+- `Helm - Package Manager`
+- `Helm chart structure` 
+
+→ it is a container orchestration system. i. cloud agnostic. ii. high availability. iii. scalability. iv. reliability.
