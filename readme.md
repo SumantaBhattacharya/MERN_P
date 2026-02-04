@@ -126,3 +126,26 @@ Project Overview of Zoom Clone
 -->
 
 <!-- https://github.com/copilot/share/c0151110-4100-8851-9900-e648c0d94168 -->
+
+# ***Docker - Complete Tutorial*** 
+ - `Why do we need Docker?` 
+ - `What is Docker? [Container & Image]`
+ - `Docker Installation (Windows OS)` 
+ - `~~Docker Installation (Mac OS)~~` 
+ - `Important Docker Commands`
+ - `Docker vs Virtual Machine`
+ - `Image vs Container`
+ - `More Docker Commands` 
+ - `Port Binding` 
+ - `Troubleshoot Commands`
+ - `Use Case: Use Docker with Development`
+ - `Docker Network`
+ - `Set up mongo & mongo-express`
+ - `Connect DB with Node App`
+ - `Docker Compose`
+ - `Use Case: Dockerizing our App`
+ - `Creating Dockerfile`
+ - `Publish Image on DockerHub`
+ - `Docker Volumes` 
+ - `Volumes Commands`
+ - `Revisiting Docker Network`
