@@ -140,7 +140,7 @@ exit
 `Important note`: *When you run a MongoDB container without a volume, the data is stored inside the container's writable layer. If the container is removed, the data is lost.*
 
 ```bash
-docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=ROOT_USERNAME -e MONGO_INITDB_ROOT_PASSWORD=ROOT_PASSWORD --name mongo --network mongo-network mongo
+docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=ROOT_USERNAME -e MONGO_INITDB_ROOT_PASSWORD=ROOT_PASSWORD --name mongo --network mongo-network mongo:4.4
 ```
 
 <!-- Pentium G3258 doesnt have AVX which is need for MongoDB version 5.0 or above so for Pentium G3258 like processor we do MongoDB version 4.4.latest. -->

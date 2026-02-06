@@ -1,61 +1,63 @@
-# ***Kubernetes***
+# **_Kubernetes_**
+
 <!-- topics to be covered -->
+
 - `What is Kubernetes?`
-    - *it is a container orchestration system.*
-    - F*eatures:*
-        - i. *cloud agnostic.* 
-        - ii. *high availability.* 
-        - iii. *scalability.* 
-        - iv. *reliability.*
+  - _it is a container orchestration system._
+  - F*eatures:*
+    - i. _cloud agnostic._
+    - ii. _high availability._
+    - iii. _scalability._
+    - iv. _reliability._
 - `Components - Node & Pod`
-    - ![K8s_Components](K8s_Components.jpg)
+  - ![K8s_Components](K8s_Components.jpg)
 - `Service & Ingress`
-    - *Each pod gets a unique IP address.*
+  - _Each pod gets a unique IP address._
     ![K8s_Components-service](K8s_Components-service.jpg)
     ![K8s_Components-ingress](K8s_Components-ingress.jpg)
-    - *`Ingress` - Expose services from outside the cluster.*
+  - _`Ingress` - Expose services from outside the cluster._
 - `ConfigMap & Secret`
-    - ![K8s_Components-ConfigMapandSecret](K8s_Components-ConfigMapandSecret.jpg)
-      - *`ConfigMap` & `Secret` are used to store   non-code data.*
-      - *`ConfigMap` stores configuration data in   key-value pairs.*         
-      <!-- - ***use cases**: database credentials,   application configurations* -->
-      - *`Secret` stores sensitive data like passwords, tokens,and keys in base64 encoded format.*
+  - ![K8s_Components-ConfigMapandSecret](K8s_Components-ConfigMapandSecret.jpg)
+    - _`ConfigMap` & `Secret` are used to store non-code data._
+    - _`ConfigMap` stores configuration data in key-value pairs._
+    <!-- - ***use cases**: database credentials,   application configurations* -->
+    - _`Secret` stores sensitive data like passwords, tokens,and keys in base64 encoded format._
       <!-- ***use cases**: database credentials, API   keys, certificates* -->
       <!-- Both `ConfigMap` and `Secret` can be mounted as environment variables or volumes inside pods -->
 
 - `Volumes`
-   - ![K8s_Components-VOLUMES.jpg](K8s_Components-VOLUMES.jpg)
+  - ![K8s_Components-VOLUMES.jpg](K8s_Components-VOLUMES.jpg)
 - `Deployment & StatefulSet`
-   - ![K8s_Components-Deployment](K8s_Components-Deployment.jpg)
-   - ![K8s_Components-StatefulSet](K8s_Components-StatefulSet.jpg)
+  - ![K8s_Components-Deployment](K8s_Components-Deployment.jpg)
+  - ![K8s_Components-StatefulSet](K8s_Components-StatefulSet.jpg)
 
-   - `K8s Components`
-      - *`Node`* <!-- worker machine in the clustor -->
-      - *`Pod`* 
-      - *`Service`*
-      - *`Ingress`*
-      - *`ConfigMap`*
-      - *`Secret`*
-      - *`Volumes`*
-      - *`Deployment`*
-      - *`StatefulSet`*
+  - `K8s Components`
+    - _`Node`_ <!-- worker machine in the clustor -->
+    - _`Pod`_
+    - _`Service`_
+    - _`Ingress`_
+    - _`ConfigMap`_
+    - _`Secret`_
+    - _`Volumes`_
+    - _`Deployment`_
+    - _`StatefulSet`_
+
 - `Kubernetes Architecture`
-   - *`Master-Worker Model`*
-        - *`Master Node`*
-           - *`API Server`* 
-            - *`Controller Manager`* <!-- controls the state of the cluster -->
-            - *`Scheduler`* <!-- assigns pods to nodes -->
-            - *`etcd`* <!-- key-value store for cluster state -->
-        - *`Worker Node`*
-            - *`Container Runtime`* <!-- Docker -->
-            - *`Kubelet`* <!-- communicates with master node -->
-            - *`kube-proxy`* <!-- manages network routing and forward requests -->
-    - ![kubernetes-cluster-architecture](https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg)
+  - _`Master-Worker Model`_
+    - _`Master Node`_
+      - _`API Server`_
+      - _`Controller Manager`_ <!-- controls the state of the cluster -->
+      - _`Scheduler`_ <!-- assigns pods to nodes -->
+      - _`etcd`_ <!-- key-value store for cluster state -->
+    - _`Worker Node`_
+      - _`Container Runtime`_ <!-- Docker -->
+      - _`Kubelet`_ <!-- communicates with master node -->
+      - _`kube-proxy`_ <!-- manages network routing and forward requests -->
+  - ![kubernetes-cluster-architecture](https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg)
 - `Summary`
 - `Local Setup - Minikube & Kubectl`
 - `Installation`
 - `Kubectl Commands [GET]`
-
   - ```bash
        #get
         kubectl version --client
@@ -68,6 +70,7 @@
         kubectl describe service SERVICE_NAME
         kubectl get deployments # same goes with this.
         kubectl get deployment DEPL0YMENT_NAME -o yaml
+        kubectl get secrets
         kubectl get all
 
       #create
@@ -86,30 +89,36 @@
 
       # delete
       kubectl delete deplyment [DEPLOYMENT_NAME] # pod is also going to be automatically deleted including replicaset.
+      kubectl delete -f FILE_NAME
 
       # apply
       kubectl apply -f [FILE_NAME]
     ```
-    kubectl is the command-line tool for interacting with Kubernetes clusters.
- - ### [`Minikube`](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download) commands
 
-    - ```bash
-        minikube start
-        minikube status
-        minikube dashboard
-        minikube pause
-        minikube stop
-        minikube delete
+    kubectl is the command-line tool for interacting with Kubernetes clusters.
+
+- ### [`Minikube`](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download) commands
+  - ```bash
+      minikube start
+      minikube status
+      minikube dashboard
+      minikube pause
+      minikube stop
+      minikube delete
     ```
-    Minikube is a tool that creates a local Kubernetes cluster on your machine.*
+
+  ```
+  Minikube is a tool that creates a local Kubernetes cluster on your machine.
+  ```
+
 - `Debugging Commands [LOGS & EXEC]`
 - `APPLY Command`
 - `YAML Configurations`
-<!-- touch nginx-deplyment.yaml
-     vim nginx-deplyment.yaml 
-     i to insert
-     :wq to save and exit
-     -->
+  <!-- touch nginx-deplyment.yaml
+       vim nginx-deplyment.yaml
+       i to insert
+       :wq to save and exit
+       -->
   ```yml
   # configeration of deployment
   apiVersion: app/v1
@@ -130,52 +139,218 @@
             app: nginx
         spec:
           containers:
-          - name: nginx
-            image: nginx:1.24
-            ports:
-            - containerPort: 5000
-```
+            - name: nginx
+              image: nginx:1.24
+              ports:
+                - containerPort: 5000
+  ```
+
+
 ```bash
 kubectl apply -f nginx-deplyment.yaml
 kubectl delete -f nginx-deplyment.yaml
 rm nginx-deplyment.yaml
-```
+````
+
 <!-- nginx-service.yaml -->
+
 ```yml
 # configeration of services
 apiVersion: v1
-kind: Services 
-metadata: 
-  name: nginx-service 
-  spec: 
+kind: Services
+metadata:
+  name: nginx-service
+  spec:
     selector:
-        app: nginx
-        port: 
+      app: nginx
+      port:
         - protocol: TCP
           port: 80 # incooming requests
           targetPort: 5000 # outgoing requests
 ```
+
 ```bash
 kubectl delete -f nginx-service.yaml
 ```
+
 ![k8s-deployment](k8s-deployment.png)
+
 - `Status in Configuration`
 - `Deploying mongo-app in K8s`
-
   - ![k8s-deployment](k8s-deployment.jpg)
 
   - `steps`
-    1. *Create Secret*
-    2. *Create Deployment for Mongodb*
-    3. *Create Internal Service for Mongodb*
-    4. *Create ConfigMap*
-    5. *Create Deployment for mongo-express*
-    6. *Create External Service for mongo-express*
+    1. _Create Secret_
+    2. _Create Deployment for Mongodb_
+    3. _Create Internal Service for Mongodb_
+    4. _Create ConfigMap_
+    5. _Create Deployment for mongo-express_
+    6. _Create External Service for mongo-express_
 
     ![k8s-deployments](k8s-deployments.png)
+
 - `Configuring Mongodb`
+
+  ```yml
+  # mongo-deplyment.yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: mongo-deployment
+    labels:
+      app: mongodb # label_name
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mongodb # label_name
+    template:
+      metadata:
+        labels:
+          app: mongodb # label_name
+      spec:
+        containers:
+          - name: mongodb # conatiner_name
+            image: mongo:4.4 # .latest
+            ports:
+              - containerPort: 27017
+            env:
+              - name: MONGO_INITDB_ROOT_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: mongo-secret
+                    key: MONGO_INITDB_ROOT_USERNAME
+              - name: MONGO_INITDB_ROOT_PASSWORD
+                valueFrom:
+                  secretKeyRef: # camelCase
+                    name: mongo-secret
+                    key: MONGO_INITDB_ROOT_PASSWORD
+              # Optional: Add storage volume for persistence
+
+  ---
+  # mongo-service.yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: mongo-service
+  spec:
+    selector:
+      app: mongodb # label_name
+    ports:
+      - protocol: TCP
+        port: 27017 # incoming requests
+        targetPort: 27017 # outgoing requests
+  ```
+
+  ```yaml
+  # mongo-secret.yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: mongo-secret # secretKeyRef_name
+  type: Opaque # hidden and secret
+  data: #encoding
+    MONGO_INITDB_ROOT_USERNAME: ZGVsdGEtYWRtaW4NCg== # echo -n 'delta-admin' | base64
+    MONGO_INITDB_ROOT_PASSWORD: ZGVsdGEtcGFzc3dvcmQNCg== # echo -n 'delta-password' | base64
+  ```
+
+  ```bash
+  kubectl apply -f mongo-secret.yaml
+  kubectl apply -f mongo-deployment.yaml
+
+  kubectl delete -f mongo-secret.yaml
+  kubectl delete -f mongo-deployment.yaml
+  ```
+
+  <!-- kubectl get secrets
+    kubectl describe service mongo-service
+    kubectl describe pod mongo-deployment-6c68b7f895-f6nl6
+    -->
+
 - `Configuring Mongo Express`
+  - ```yml
+      # mongo-express-deployment.yaml
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+      name: mongo-express
+      labels:
+        app: mongo-express # label_name
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: mongo-express # label_name
+        template:
+          metadata:
+            labels:
+              app: mongo-express # label_name
+        spec:
+          containers:
+          - name: mongo-express # conatiner_name
+            image: mongo-express # .latest
+            ports:
+            - containerPort: 8081
+            env:
+            - name: ME_CONFIG_MONGODB_SERVER 
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap # configMapKeyRef_name
+                  key: database-url # Points to "mongo-service"
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              valueFrom:
+                secretKeyRef: # camelCase
+                  name: mongo-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              valueFrom:
+                secretKeyRef: # camelCase
+                  name: mongo-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+    ---
+    # mongo-express-service.yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: mongo-express-service
+    spec:
+      selector:
+        app: mongo-express # label_name
+      type: LoadBalancer # ClusterIP
+      ports:
+        - protocol: TCP
+          port: 8081 # incoming requests
+          targetPort: 8081 # outgoing requests
+          nodePort: 30000 # 30000-32767 browser accessing port internally re-direct to targetPort 8081
+    ```
+    ```bash
+    minikube service mongo-express-service # username: admin, password: pass
+    ```
+```yml
+# mongo-express-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-configmap # configMapKeyRef_name
+data: #encoding
+  database-url: mongo-service 
+
+```
+
+```bash
+kubectl apply -f mongo-express-configmap.yaml
+kubectl apply -f mongo-express-deployment.yaml
+
+kubectl delete -f mongo-express-configmap.yaml
+kubectl delete -f mongo-express-deployment.yaml
+```
+
+![k8s-deployments](k8s-deployments.jpg)
 - `Namespace in K8s`
+  - ![k8s-Namespace.jpg](k8s-Namespace.jpg)
+  - ```bash
+      kubectl get namespaces
+      ```
 - `Namespace Use cases`
 - `Custom Namespaces`
 - `Scope`
@@ -185,3 +360,4 @@ kubectl delete -f nginx-service.yaml
 - `Configure app with Ingress`
 - `Helm - Package Manager`
 - `Helm chart structure `
+
