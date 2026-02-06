@@ -349,9 +349,19 @@ kubectl delete -f mongo-express-deployment.yaml
 - `Namespace in K8s`
   - ![k8s-Namespace.jpg](k8s-Namespace.jpg)
   - ```bash
-      kubectl get namespaces
+      kubectl get namespaces # ns - for short
+      kubectl get services -n default
+      kubectl cluster-info # info coming from kube-public
       ```
+      <!-- 1.i. system related components. 1.ii. not meant for general user. 2.i. publically accessible resouces or components are stored such as cluster related information which doesnt required any authorisation or any authentication.
+      3. sub-folders contains information regarding cluster availability and a cluster node's health. 4. default namespace is used for objects that do not have a namespace. -->
 - `Namespace Use cases`
+  - *Separation of concerns*
+  - *Application grouping*
+  - *Environment separation*
+  - *Versioning*
+  - *Security policy*
+  - *Resource limits/quotas*
 - `Custom Namespaces`
 - `Scope`
 - `Kubens Installation`
