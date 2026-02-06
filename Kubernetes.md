@@ -191,7 +191,7 @@ kubectl delete -f nginx-service.yaml
 
 - `Configuring Mongodb`
 
-  ```yml
+  ```yml 
   # mongo-deplyment.yaml
   apiVersion: apps/v1
   kind: Deployment
@@ -199,7 +199,7 @@ kubectl delete -f nginx-service.yaml
     name: mongo-deployment
     labels:
       app: mongodb # label_name
-  spec:
+  spec: #  type: ClusterIP  # ← Default, gets internal ip only
     replicas: 1
     selector:
       matchLabels:
@@ -241,7 +241,7 @@ kubectl delete -f nginx-service.yaml
         port: 27017 # incoming requests
         targetPort: 27017 # outgoing requests
   ```
-
+<!-- "mongodb://delta-admin:delta-password@mongo-service:27017/admin" -->
   ```yaml
   # mongo-secret.yaml
   apiVersion: v1
@@ -296,7 +296,7 @@ kubectl delete -f nginx-service.yaml
               valueFrom:
                 configMapKeyRef:
                   name: mongo-configmap # configMapKeyRef_name
-                  key: database-url # Points to "mongo-service"
+                  key: database-url # Points to "mongo-express-configmap"
             - name: ME_CONFIG_MONGODB_ADMINUSERNAME
               valueFrom:
                 secretKeyRef: # camelCase
@@ -316,18 +316,19 @@ kubectl delete -f nginx-service.yaml
     spec:
       selector:
         app: mongo-express # label_name
-      type: LoadBalancer # ClusterIP
+      type: LoadBalancer # ClusterIP GUI-Safe to expose, Has authentication built-in. Gets external IP, (external user) need browser access → LoadBalancer
       ports:
         - protocol: TCP
           port: 8081 # incoming requests
           targetPort: 8081 # outgoing requests
-          nodePort: 30000 # 30000-32767 browser accessing port internally re-direct to targetPort 8081
+          nodePort: 30000 # 30000-32767 browser accessing port internally re-direct to targetPort 8081. Browser: http://<node-ip>:30000
     ```
     ```bash
     minikube service mongo-express-service # username: admin, password: pass
     ```
 ```yml
 # mongo-express-configmap.yaml
+# ConfigMap separates code from configuration
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -344,6 +345,28 @@ kubectl apply -f mongo-express-deployment.yaml
 kubectl delete -f mongo-express-configmap.yaml
 kubectl delete -f mongo-express-deployment.yaml
 ```
+
+Deploy order:
+1. Secrets first (DB needs them at startup)
+   ```bash
+   kubectl apply -f mongo-secret.yaml
+   ```
+2. Database
+   ```bash
+   kubectl apply -f mongo-deployment.yaml
+   ```
+3. ConfigMap (mongo-express needs connection URL)
+   ```bash
+   kubectl apply -f mongo-express-configmap.yaml
+   ```
+4. GUI (depends on DB being ready)
+   ```bash
+   kubectl apply -f mongo-express-deployment.yaml
+   ```
+5. Get external URL
+   ```bash
+   minikube service mongo-express-service
+   ```
 
 ![k8s-deployments](k8s-deployments.jpg)
 - `Namespace in K8s`
