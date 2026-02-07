@@ -14,8 +14,11 @@
 - `Service & Ingress`
   - _Each pod gets a unique IP address._
     ![K8s_Components-service](K8s_Components-service.jpg)
+    - `In Kubernetes`, a *`Service`* *is an abstraction for exposing a group of Pods over a network..* *`Service`* *is to make that set of Pods available on the network so that clients can interact with it. A key aim of Services in Kubernetes is that you don't need to modify your existing application as Pods are ephemeral resources*
     ![K8s_Components-ingress](K8s_Components-ingress.jpg)
-  - _`Ingress` - Expose services from outside the cluster._
+  - `Ingress` - *`Ingress`* *is just to expose an internal service and routing incoming requests from the client coming to the URL forwarding them to the services.*
+  <!-- Expose services from outside the cluster._ -->
+
 - `ConfigMap & Secret`
   - ![K8s_Components-ConfigMapandSecret](K8s_Components-ConfigMapandSecret.jpg)
     - _`ConfigMap` & `Secret` are used to store non-code data._
@@ -105,6 +108,7 @@
       minikube pause
       minikube stop
       minikube delete
+      minikube tunnel # to access the app from the browser. # exit with ctrl+c
     ```
 
   ```
@@ -316,12 +320,12 @@ kubectl delete -f nginx-service.yaml
     spec:
       selector:
         app: mongo-express # label_name
-      type: LoadBalancer # ClusterIP GUI-Safe to expose, Has authentication built-in. Gets external IP, (external user) need browser access → LoadBalancer
+      # type: LoadBalancer # ClusterIP GUI-Safe to expose, Has authentication built-in. Gets external IP, (external user) need browser access → LoadBalancer
       ports:
         - protocol: TCP
           port: 8081 # incoming requests
           targetPort: 8081 # outgoing requests
-          nodePort: 30000 # 30000-32767 browser accessing port internally re-direct to targetPort 8081. Browser: http://<node-ip>:30000
+          # nodePort: 30000 # 30000-32767 browser accessing port internally re-direct to targetPort 8081. Browser: http://<node-ip>:30000. external-ip or port
     ```
     ```bash
     minikube service mongo-express-service # username: admin, password: pass
@@ -386,11 +390,134 @@ Deploy order:
   - *Security policy*
   - *Resource limits/quotas*
 - `Custom Namespaces`
-- `Scope`
-- `Kubens Installation`
-- `Ingress in K8s`
-- `Ingress Controller`
-- `Configure app with Ingress`
-- `Helm - Package Manager`
-- `Helm chart structure `
+  - ![k8s-Namespace-custom.jpg](k8s-Namespace-custom.jpg)
+  - ```bash
+      kubectl create namespace [NAMESPACE] # ns - for short # it comes in metadata in yaml. namespace: [CUSTOM-NAMESPACE]
+      ```
+      ```bash
+      kubectl apply -f [DEPLOYMENT].yaml --namespace=[CUSTOM-NAMESPACE]
+      kubectl get deployments -n [CUSTOM-NAMESPACE] # not default check in custom namespace
+      kubectl delete namespace [NAMESPACE]
+      ```
 
+- `Scope`
+ConfigMap, Secrets, Pods, Deployments, Services all comes under namespace but not Nodes.
+
+```bash
+kubectl api-resources # list all resources
+kubectl api-resources --namespaced=true # list all namespaced resources
+kubectl api-resources --namespaced=false # list all non-namespaced resources
+```
+- `Kubens Installation`
+    ```bash
+      brew install kubectx
+      kubens # list all the namespace
+      kubens [NAMESPACE] # switch to the namespace
+    ```
+- `Ingress in K8s`
+    ```yml
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: mongo-express-ingress
+      spec:
+        rules:
+        - host: app.com # domain name
+          - http:
+              paths:
+                - backend:
+                    service:
+                      name: mongo-express-service # internal service.
+                      port:
+                        number: 8081
+    ```
+- `Ingress Controller`
+  - *`Ingress Controller`* *is a component that runs in your cluster and provides the implementation for the Ingress resource. It monitors the Ingress resources in your cluster and configures the load balancer or reverse proxy to route traffic to the correct Services.*
+
+  - `nginx-ingress-controller`
+
+  - ![k8s-Ingress-Controller](k8s-Ingress-Controller.jpg)
+
+  <!-- Application Load Balancer → Ingress Controller → Ingress → Service → Pod -->
+
+- `Configure app with Ingress`
+  
+  - ```yml
+      # hello-world.yaml
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hello-world
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: hello-world
+        template: # configeration of pod
+          metadata:
+            labels:
+              app: hello-world
+          spec:
+            containers:
+            - name: hello-world # conatiner_name
+              image: hashicorp/http-echo # image_name
+              args:
+                - "-text='Hello World'"
+              ports:
+              - containerPort: 5678
+        ---
+        # hello-world-service.yaml
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: hello-world-service
+        spec:
+          selector:
+            app: hello-world # label_name
+          ports:
+            - protocol: TCP
+              port: 80 # incoming requests
+              targetPort: 5678 # outgoing requests container port
+      ```
+  - ```yml
+      # hello-ingress.yaml
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: hello-ingress
+      spec:
+        ingressClassName: nginx # nginx-controller required in newer Kubernetes versions.
+        rules:
+        - host: app.com # domain name
+          - http:
+              paths:
+                - path: / # path to access the app. http://app.com/
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: hello-world-service
+                      port:
+                        number: 80
+      ```
+      <!-- here, the instead of exposing Application Load Balancer, we are using Ingress controller directly to expose the service. -->
+
+    ```bash
+    minikube addons enable ingress # enable ingress in minikube. its created a new namespace which we can see by kubectl get namespaces, kubectl get all -n ingress-nginx, kubectl get pods -n ingress-nginx, kubectl get services -n ingress-nginx.
+    minikube addons list # list all the addons
+    minikube addons disable ingress # disable ingress in minikube
+    # Host Machine → Docker Container → Minikube → Ingress Controller → Ingress → Service → Pod
+    ```
+    ```bash
+    kubectl apply -f hello-world.yaml
+    kubectl apply -f hello-ingress.yaml
+    # kubectl get deployments to list the new deployment
+    kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 8080:80 # port-forwarding to access the app from the browser. 
+    ```
+    ```bash
+    curl -H "Host: app.com" http://localhost:8080 # access the app from the browser.
+    ```
+- `Helm - Package Manager`
+  - *`Helm`* *is a package manager also a templating engine for Kubernetes that helps you deploy and manage applications on your cluster. It uses a packaging format called* *`Helm Chart`* - *A Helm Chart is a collection of files that describe a related set of Kubernetes resources.*
+  - [artifact](https://artifacthub.io/)
+  - ![k8s-Helm-PackageManager](k8s-Helm-PackageManager.jpg)
+- `Helm chart structure`
