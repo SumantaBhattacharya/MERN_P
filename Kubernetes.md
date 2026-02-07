@@ -124,6 +124,8 @@
        :wq to save and exit
        -->
   ```yml
+  #.yaml cretes an object
+  # nginx-deployment.yaml
   # configeration of deployment
   apiVersion: app/v1
   kind: Deployment # Service, ConfigMap
@@ -480,7 +482,7 @@ kubectl api-resources --namespaced=false # list all non-namespaced resources
               targetPort: 5678 # outgoing requests container port
       ```
   - ```yml
-      # hello-ingress.yaml
+      # hello-ingress.yaml 
       apiVersion: networking.k8s.io/v1
       kind: Ingress
       metadata:
@@ -521,3 +523,13 @@ kubectl api-resources --namespaced=false # list all non-namespaced resources
   - [artifact](https://artifacthub.io/)
   - ![k8s-Helm-PackageManager](k8s-Helm-PackageManager.jpg)
 - `Helm chart structure`
+  - ![k8s-Helm-chart-structure](k8s-Helm-chart-structure.jpg)
+
+  ```bash
+  helm install --set version=3.0 --values values.yaml [CHART_NAME]
+  ```
+
+- `charts` *contains the dependencies for the* `helm chart`. 
+- `Templates` *contains the* *`templates`* *for the* `helm chart`. 
+- `Chart.yaml` *contains the metadata for the* `helm chart`. 
+- `Values.yaml` *contains the values for the *`templates`*.*
