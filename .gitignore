@@ -608,6 +608,8 @@ Initial_FullStack/frontend/src/assets/Decibel-FontZillion.zip
 Initial_FullStack/frontend/src/assets/react.svg
 Initial_FullStack/frontend/src/assets/Fonts/decibel_2.ttf
 Initial_FullStack/frontend/public/vite.svg
+Initial_FullStack/backend/node_modules/express/node_modules/body-parser/package.json
+Initial_FullStack/backend/node_modules/*
 EJS-Blog/node_modules/.package-lock.json
 EJS-Blog/node_modules/.bin/ejs
 EJS-Blog/node_modules/.bin/ejs.cmd
